@@ -17,9 +17,10 @@
 #
 
 LOCAL_PATH:= $(call my-dir)
-LIBUSB_ROOT_REL:= ../..
-LIBUSB_ROOT_ABS:= $(LOCAL_PATH)/../..
-
+LIBUSB_ROOT_REL:= ../../
+LIBUSB_ROOT_ABS:= $(LOCAL_PATH)/../../libusb/
+LIB_CFLAGS += -Wno-error=date-time
+#LOCAL_CFLAGS
 # listdevs
 
 include $(CLEAR_VARS)
@@ -31,7 +32,7 @@ LOCAL_C_INCLUDES += \
   $(LIBUSB_ROOT_ABS)
 
 LOCAL_SHARED_LIBRARIES += libusb1.0
-
+LOCAL_CFLAGS += $(LIB_CFLAGS)
 LOCAL_MODULE:= listdevs
 
 include $(BUILD_EXECUTABLE)
@@ -80,7 +81,7 @@ LOCAL_C_INCLUDES += \
   $(LIBUSB_ROOT_ABS)
 
 LOCAL_SHARED_LIBRARIES += libusb1.0
-
+LOCAL_CFLAGS += $(LIB_CFLAGS)
 LOCAL_MODULE:= fxload
 
 include $(BUILD_EXECUTABLE)
