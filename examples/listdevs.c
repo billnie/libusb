@@ -20,7 +20,12 @@
 #include <stdio.h>
 
 #include "libusb.h"
-
+static void print_devdesc(libusb_device *dev){
+	if(dev){
+		// printf("\naddr = %02x\n", libusb_get_device_address());	
+		// printf("numofconfigure = %02x\n", dev->num_configurations);	
+	}
+}
 static void print_devs(libusb_device **devs)
 {
 	libusb_device *dev;
@@ -34,10 +39,10 @@ static void print_devs(libusb_device **devs)
 			fprintf(stderr, "failed to get device descriptor");
 			return;
 		}
-
-		printf("%04x:%04x (bus %d, device %d)",
+		hexDump("[demo_data:recv]", (void*)&desc, sizeof(desc));
+		printf("%04x:%04x (bus %d, device %d )",
 			desc.idVendor, desc.idProduct,
-			libusb_get_bus_number(dev), libusb_get_device_address(dev));
+			libusb_get_bus_number(dev), libusb_get_device_address(dev) );
 
 		r = libusb_get_port_numbers(dev, path, sizeof(path));
 		if (r > 0) {
@@ -46,6 +51,8 @@ static void print_devs(libusb_device **devs)
 				printf(".%d", path[j]);
 		}
 		printf("\n");
+		print_devdesc(dev);
+		//
 	}
 }
 

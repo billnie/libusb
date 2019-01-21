@@ -18,6 +18,16 @@
 
 LOCAL_PATH:= $(call my-dir)
 
+########################
+include $(CLEAR_VARS)
+LOCAL_MODULE := libhexdump
+LOCAL_SRC_FILES := libhexdump.a
+LOCAL_MODULE_TAGS := eng
+LOCAL_MODULE_SUFFIX := .a
+LOCAL_MODULE_CLASS := STATIC_LIBRARIES
+include $(BUILD_PREBUILT)
+
+########################
 include $(LOCAL_PATH)/libusb.mk
 include $(LOCAL_PATH)/examples.mk
 include $(LOCAL_PATH)/tests.mk

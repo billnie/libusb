@@ -20,6 +20,7 @@ LOCAL_PATH:= $(call my-dir)
 LIBUSB_ROOT_REL:= ../../
 LIBUSB_ROOT_ABS:= $(LOCAL_PATH)/../../libusb/
 LIB_CFLAGS += -Wno-error=date-time
+STATIC_LIBRARIES += libhexdump	
 #LOCAL_CFLAGS
 # listdevs
 
@@ -29,8 +30,10 @@ LOCAL_SRC_FILES := \
   $(LIBUSB_ROOT_REL)/examples/listdevs.c
 
 LOCAL_C_INCLUDES += \
-  $(LIBUSB_ROOT_ABS)
+  $(LIBUSB_ROOT_ABS) \
+  $(LOCAL_PATH)
 
+LOCAL_STATIC_LIBRARIES += $(STATIC_LIBRARIES)
 LOCAL_SHARED_LIBRARIES += libusb1.0
 LOCAL_CFLAGS += $(LIB_CFLAGS)
 LOCAL_MODULE:= listdevs
